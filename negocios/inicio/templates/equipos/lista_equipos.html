@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Lista de Equipos</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Tipo</th>
+                <th>Modelo</th>
+                <th>Sistema Operativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in equipo %}
+                <tr>
+                    <td>{{equipo.serial_number}}</td>
+                    <td>{{equipo.cliente_equipo}}</td>
+                    <td>{{equipo.telefono_cliente}}</td>
+                    <td>{{equipo.tipo_equipo}}</td>
+                    <td>{{equipo.modelo_equipo}}</td>
+                    <td>{{equipo.sistema_operativo}}</td>
+                    <td><a class="btn btn-danger" href="eliminarEquipo/{{equipo.serial_number}}">Eliminar</a></td>
+                    <td><a class="btn btn-success" href="editarEquipo/{{equipo.serial_number}}">Editar</a></td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="javascript:enviar(1);">&laquo; first</a>
+                <a href="javascript:enviar({{ page_obj.previous_page_number }});">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="javascript:enviar({{ page_obj.next_page_number }});">next</a>
+                <a href="javascript:enviar({{ page_obj.paginator.num_pages }});">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock contenido %}
+
+{% block scripts %}
+
+{% endblock scripts %}

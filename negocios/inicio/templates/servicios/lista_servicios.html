@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Lista de Ordenes de Servicios</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Cotización</th>
+                <th>Falla</th>
+                <th>Notas Finales</th>
+                <th>Costo Final</th>
+                <th>Observaciones</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicio %}
+                <tr>
+                    <td>{{servicio.id_orden}}</td>
+                    <td>{{servicio.fecha_orden}}</td>
+                    <td>{{servicio.cotizacion}}</td>
+                    <td>{{servicio.falla_equipo}}</td>
+                    <td>{{servicio.notas_finales}}</td>
+                    <td>{{servicio.costo_final}}</td>
+                    <td>{{servicio.observaciones_notas}}</td>
+                    <td>{{servicio.equipo}}</td>
+                    <td><a class="btn btn-danger" href="eliminarOrden/{{servicio.id_orden}}">Eliminar</a></td>
+                    <td><a class="btn btn-success" href="editarOrden/{{servicio.id_orden}}">Editar</a></td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="javascript:enviar(1);">&laquo; first</a>
+                <a href="javascript:enviar({{ page_obj.previous_page_number }});">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="javascript:enviar({{ page_obj.next_page_number }});">next</a>
+                <a href="javascript:enviar({{ page_obj.paginator.num_pages }});">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock contenido %}
+
+{% block scripts %}
+
+{% endblock scripts %}

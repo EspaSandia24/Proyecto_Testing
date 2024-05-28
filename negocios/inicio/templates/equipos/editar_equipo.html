@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Editar Equipo
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Editar Equipo</h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <a class="btn btn-secondary" href="{% url 'Equipos' %}">Cancelar</a>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+</form>
+{% endblock contenido %}
+
+{% block scripts %}
+
+{% endblock scripts %}

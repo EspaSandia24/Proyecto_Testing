@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Cambiar Permisos
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Cambiar Permisos </h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>Permisos</th> 
+                <th></th> 
+                <th></th> 
+
+            </tr>
+        </thead>
+        <tbody>
+            <td>
+                <input type="hidden" name="id_usuario" value="{{usuarios.id}}">
+                <select name="grupo">
+                {% for grupo in grupos  %}
+                    <option value="{{grupo.id}}">{{grupo.name}}</option>
+                {% endfor %}
+                </select>
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <button class="btn btn-primary" type="submit">Cambiar</button>
+                
+            </td>
+            <td>
+                <a class="btn btn-secondary w-100" href="{% url 'usuarios' %}">Cancelar</a>
+            </td>
+        </tbody>
+    </table>
+</form>
+{% endblock contenido %}
+
+{% block scripts %}
+
+{% endblock scripts %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Lista de Usuarios
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    <h1>Lista de Usuarios</h1>
+
+    <form  method="POST" id="form">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre de Usuario</th>
+                    <th>Permiso</th>
+                    <th>Acciones</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuarios in usuarios %}
+                    <tr>
+                        <td>{{usuarios.username}}</td>
+                        <td>{{ usuarios.groups.first.name }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" 
+                                href="{% url 'eliminarUsuario' usuarios.id %}">
+                                Eliminar
+                            </a>
+                            <a class="btn btn-sm btn-warning" 
+                            href="{% url 'asignarGrupo' usuarios.id %}">
+                                Cambiar Permiso
+                            </a>
+                        </td>
+                        
+                
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </table>
+</form>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="javascript:enviar(1);">&laquo; first</a>
+                <a href="javascript:enviar({{ page_obj.previous_page_number }});">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="javascript:enviar({{ page_obj.next_page_number }});">next</a>
+                <a href="javascript:enviar({{ page_obj.paginator.num_pages }});">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+{% endblock contenido %}
+
+{% block scripts %}
+
+    <script>
+        funtion enviar(page){
+            $("#page").val(page);
+            $("#form").submit();
+        }
+        
+        function llenar(){
+            var claves = document.querySelectorAll("[id='claves']");
+ 
+            for(var i = 0; i < claves.length; i++)
+                if (document.getElementById("todos").checked == true) {
+                    claves[i].checked = true;
+                } else {
+                    claves[i].checked = false;
+                }
+                
+        }
+        
+    </script>
+    
+    
+
+{% endblock scripts %}
