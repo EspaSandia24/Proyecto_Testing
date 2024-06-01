@@ -102,8 +102,8 @@ def eliminar_orden(request, id_orden):
     return redirect('Servicios')
 
 @login_required
-def eliminar_equipo(request, serial_number):
-    equipo = Equipo.objects.get(serial_number = serial_number)
+def eliminar_equipo(request, id):
+    equipo = Equipo.objects.get(id = id)
     equipo.delete()
     return redirect('Equipos')
 
