@@ -38,6 +38,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='equipo',
             name='tipo_equipo',
-            field=models.TextField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'AIO'), ('I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1),
+            field=models.TextField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'AIO'),
+                                   ('I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1),
         ),
     ]

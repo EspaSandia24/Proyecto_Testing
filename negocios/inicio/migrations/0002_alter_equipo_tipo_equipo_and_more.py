@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='equipo',
             name='tipo_equipo',
-            field=models.CharField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'AIO'), ('I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1),
+            field=models.CharField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'AIO'),
+                                   ('I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1),
         ),
         migrations.AlterField(
             model_name='ordenservicio',

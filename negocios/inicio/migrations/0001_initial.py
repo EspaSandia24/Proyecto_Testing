@@ -15,10 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Equipo',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('cliente_equipo', models.TextField(max_length=50)),
                 ('telefono_cliente', models.IntegerField(max_length=10)),
-                ('tipo_equipo', models.CharField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'Alo'), ('I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1)),
+                ('tipo_equipo', models.CharField(choices=[('E', 'Escritorio-CPU'), ('P', 'Portatil'), ('A', 'Alo'), (
+                    'I', 'Impresora'), ('M', 'Multifuncional'), ('T', 'Tablet')], default='P', max_length=1)),
                 ('marca_equipo', models.CharField(max_length=30)),
                 ('modelo_equipo', models.CharField(max_length=30)),
                 ('serial_number', models.CharField(max_length=15)),
@@ -30,7 +32,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OrdenServicio',
             fields=[
-                ('id_orden', models.IntegerField(primary_key=True, serialize=False)),
+                ('id_orden', models.IntegerField(
+                    primary_key=True, serialize=False)),
                 ('fecha_orden', models.DateField()),
                 ('cotizacion', models.FloatField(max_length=5)),
                 ('tipo_servicio', models.CharField(max_length=20)),
@@ -43,7 +46,8 @@ class Migration(migrations.Migration):
                 ('fecha_entrega', models.DateField()),
                 ('costo_final', models.FloatField(max_length=5.2)),
                 ('observaciones_notas', models.CharField(max_length=50)),
-                ('equipo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inicio.equipo')),
+                ('equipo', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='inicio.equipo')),
             ],
         ),
     ]
