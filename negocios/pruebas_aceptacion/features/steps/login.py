@@ -18,8 +18,8 @@ def step_impl(context):
     context.driver.find_element(By.XPATH, '/html/body/main/div/section/div/div/div/div[2]/div/form/div[3]/button').click()
 
 
-@then(u'puedo ver "{Nombre}" en el Dashboard')
-def step_impl(context, Nombre):
+@then(u'puedo ver "{mensaje}"')
+def step_impl(context, mensaje):
    div = context.driver.find_element(By.ID, 'main')
    time.sleep(5)
-   assert Nombre in div.text, f"El usuario {Nombre} no se encuentra en {div.text}"
+   assert mensaje in div.text, f"Ingresa a tu cuenta{div.text}"
