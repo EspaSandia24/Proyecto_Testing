@@ -22,4 +22,11 @@ def step_impl(context):
 def step_impl(context, mensaje):
    div = context.driver.find_element(By.ID, 'main')
    time.sleep(5)
-   assert mensaje in div.text, f"Ingresa a tu cuenta{div.text}"
+   assert mensaje in div.text
+
+@then(u'la pagina se recarga mostrando el mensaje "{mensaje}"')
+def step_impl(context,mensaje):
+   body = context.driver.find_element(By.CLASS_NAME, 'card-body')
+   time.sleep(5)
+   assert mensaje in body.text
+
