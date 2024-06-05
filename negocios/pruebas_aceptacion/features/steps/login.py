@@ -7,15 +7,18 @@ import time
 def step_impl(context, url):
     context.driver = webdriver.Chrome()
     context.driver.get(url)
+    time.sleep(2)
 
 @given(u'escribo mi Usuario "{Usuario}" y mi Password "{Password}"')
 def step_impl(context, Usuario, Password):
     context.driver.find_element(By.NAME, 'username').send_keys(Usuario)
     context.driver.find_element(By.NAME, 'password').send_keys(Password)
+    time.sleep(2)
 
 @when(u'presiono el botón Login')
 def step_impl(context):
     context.driver.find_element(By.XPATH, '/html/body/main/div/section/div/div/div/div[2]/div/form/div[3]/button').click()
+    time.sleep(2)
 
 
 @then(u'puedo ver "{mensaje}"')
