@@ -18,7 +18,7 @@ def step_impl(context):
 
 @given(u'le da click al botón Editar')
 def step_impl(context):
-    context.driver.find_element(By.XPATH, "//a[contains(text(), 'Editar')]").click()
+    context.driver.find_element(By.XPATH, '//*[@id="main"]/table/tbody/tr[1]/td[10]/a').click()
 
 
 

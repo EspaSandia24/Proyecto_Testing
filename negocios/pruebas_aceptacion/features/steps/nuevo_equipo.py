@@ -40,7 +40,7 @@ def step_impl(context,clave,SO):
 
 @when(u'presiono el botón Agregar')
 def step_impl(context):
-    context.driver.find_element(By.XPATH, '/html/body/main/form/button').click()
+    context.driver.find_element(By.XPATH, '//*[@id="main"]/form/button').click()
     time.sleep(1)
 
 
