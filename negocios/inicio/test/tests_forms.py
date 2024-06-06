@@ -1,7 +1,8 @@
-from django.test import TestCase
+
 from inicio.forms import UserForm
 from django.test import TestCase
 from django.contrib.auth.models import User
+
 
 class UserFormTest(TestCase):
 
@@ -22,7 +23,8 @@ class UserFormTest(TestCase):
             're_pass': 'password456'
         })
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['password'], ['Las contraseñas no son iguales'])
+        self.assertEqual(form.errors['password'], [
+                         'Las contraseñas no son iguales'])
 
     def test_user_form_save(self):
         form = UserForm(data={
@@ -49,9 +51,8 @@ class UserFormTest(TestCase):
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'usuario')
         self.assertTrue(user.check_password('password123'))
-        self.assertIsNone(user.id)  # El usuario aún no se ha guardado en la base de datos
+        # El usuario aún no se ha guardado en la base de datos
+        self.assertIsNone(user.id)
         user.save()
-        self.assertIsNotNone(user.id)  # El usuario ahora está guardado en la base de datos
-    
-
-
+        # El usuario ahora está guardado en la base de datos
+        self.assertIsNotNone(user.id)

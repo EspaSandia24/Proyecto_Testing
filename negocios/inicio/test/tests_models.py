@@ -1,9 +1,9 @@
-from django.test import TestCase
-from datetime import date
-from inicio.models import Equipo, OrdenServicio  
+
+from inicio.models import Equipo, OrdenServicio
 from django.test import TestCase
 from django.db import IntegrityError
 from datetime import date
+
 
 class TestEquipoOrdenServicio(TestCase):
 
@@ -63,18 +63,20 @@ class TestEquipoOrdenServicio(TestCase):
         self.assertEqual(orden_servicio.cotizacion, 150.50)
         self.assertEqual(orden_servicio.tipo_servicio, "Reparación")
         self.assertEqual(orden_servicio.falla_equipo, "No enciende")
-        self.assertEqual(orden_servicio.indicaciones_adicionales, "Revisar placa base")
+        self.assertEqual(
+            orden_servicio.indicaciones_adicionales, "Revisar placa base")
         self.assertIsNone(orden_servicio.servicio_realizado)
         self.assertIsNone(orden_servicio.notas_finales)
         self.assertEqual(orden_servicio.encargado, "Técnico 1")
         self.assertEqual(orden_servicio.partes, "Placa base")
         self.assertIsNone(orden_servicio.fecha_entrega)
         self.assertEqual(orden_servicio.costo_final, 150.50)
-        self.assertEqual(orden_servicio.observaciones_notas, "Entregar urgentemente")
+        self.assertEqual(orden_servicio.observaciones_notas,
+                         "Entregar urgentemente")
         self.assertEqual(orden_servicio.equipo, equipo)
 
     def test_equipo_serial_number_unique(self):
-        equipo = Equipo.objects.create(
+        Equipo.objects.create(
             cliente_equipo="Cliente 1",
             telefono_cliente=1234567890,
             tipo_equipo='P',
@@ -108,7 +110,8 @@ class TestEquipoOrdenServicio(TestCase):
             serial_number="123456789",
             sistema_operativo="Windows 10"
         )
-        self.assertEqual(equipo.tipo_equipo, 'P')  # Verifica que el valor por defecto es 'P'
+        # Verifica que el valor por defecto es 'P'
+        self.assertEqual(equipo.tipo_equipo, 'P')
 
     def test_fecha_entrega_nula(self):
         equipo = Equipo.objects.create(
@@ -122,7 +125,7 @@ class TestEquipoOrdenServicio(TestCase):
             contraseña_equipo="password",
             sistema_operativo="Windows 10"
         )
-        orden_servicio = OrdenServicio.objects.create(
+        OrdenServicio.objects.create(
             fecha_orden=date.today(),
             cotizacion=150.50,
             tipo_servicio="Reparación",
@@ -134,14 +137,14 @@ class TestEquipoOrdenServicio(TestCase):
 
     def test_str_method(self):
         equipo = Equipo.objects.create(
-        cliente_equipo="Cliente de Prueba",
-        telefono_cliente=123456789,
-        tipo_equipo='P',
-        marca_equipo="Marca de Prueba",
-        modelo_equipo="Modelo de Prueba",
-        serial_number="12345ABCDE",
-        accesorios_equipo="Cargador, Mouse",
-        contraseña_equipo="password123",
-        sistema_operativo="Windows 10"
-    )
+            cliente_equipo="Cliente de Prueba",
+            telefono_cliente=123456789,
+            tipo_equipo='P',
+            marca_equipo="Marca de Prueba",
+            modelo_equipo="Modelo de Prueba",
+            serial_number="12345ABCDE",
+            accesorios_equipo="Cargador, Mouse",
+            contraseña_equipo="password123",
+            sistema_operativo="Windows 10"
+        )
         self.assertEqual(str(equipo), "Cliente de Prueba-12345ABCDE")
