@@ -32,7 +32,7 @@ def registrar(request):
             # Verificar si el usuario ya existe en la base de datos
             if User.objects.filter(username=usuario).exists():
                 messages.error(request, 'El nombre de usuario ya está en uso.')
-                return render(request, 'register.html')
+                return render(request, 'usuarios/register.html')
 
             user = User.objects.create_user(
                 username=usuario, email=email, password=password)
@@ -129,8 +129,8 @@ def editar_orden(request, id_orden):
 
 
 @login_required
-def editar_equipo(request, serial_number):
-    equipo = Equipo.objects.get(serial_number=serial_number)
+def editar_equipo(request, id):
+    equipo = Equipo.objects.get(id=id)
     form = FormEditarEquipo(instance=equipo)
 
     if request.method == 'POST':
